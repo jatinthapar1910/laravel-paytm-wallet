@@ -23,12 +23,11 @@ class ReceivePaymentProvider extends PaytmWalletProvider{
 
 		$_p = array_merge($defaults, $params);
 		foreach ($_p as $key => $value) {
-
-			if ($value == NULL) {
-				
-				throw new \Exception(' \''.$key.'\' parameter not specified in array passed in prepare() method');
-				
-				return false;
+			if($key !== 'mobile_number'){
+				if ($value == NULL) {
+					throw new \Exception(' \''.$key.'\' parameter not specified in array passed in prepare() method');
+					return false;
+				}
 			}
 		}
 		$this->parameters = $_p;
